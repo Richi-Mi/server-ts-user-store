@@ -37,6 +37,10 @@ export class AuthController {
     }
 
     public validateEmail = (req: Request, res: Response) => {
-        res.json({ msg: 'Email validation successful' })
+        const { token } = req.params
+
+        this.authService.validateEmail( token )
+            .then( () => res.status(200).json('Email validated'))
+            .catch( (error) => this.handdleError(error, res))        
     }
 }

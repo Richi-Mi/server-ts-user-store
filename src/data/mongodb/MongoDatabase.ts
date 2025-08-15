@@ -19,4 +19,12 @@ export class MongoDatabase {
             throw err
         }
     }
+    static async disconnect() {
+        try {
+            await mongoose.disconnect();
+            console.log('MongoDB Base de datos desconectada');
+        } catch (err) {
+            throw err
+        }
+    }
 }
