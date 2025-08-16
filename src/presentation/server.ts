@@ -1,4 +1,5 @@
 import express, { Router } from 'express';
+import fileUpload from 'express-fileupload'
 import path from 'path';
 
 interface Options {
@@ -34,6 +35,11 @@ export class Server {
 
     //* Public Folder
     this.app.use( express.static( this.publicPath ) );
+
+    // * File uploads
+    this.app.use(fileUpload({
+      limits: { fileSize: 50 * 1024 * 1024 }
+    }));
 
     //* Routes
     this.app.use( this.routes );
